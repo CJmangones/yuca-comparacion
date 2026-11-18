@@ -44,9 +44,4 @@ Responsabilidad principal: datos (fuente, inventario, EDA, duplicados y fugas).
 
 ## Plantilla para las siguientes entradas
 
-## AAAA-MM-DD
-- **Qué hice hoy:**
-- **Qué archivo toqué / qué ejecuté:**
-- **Qué decidí y por qué:**
-- **Qué dificultad tuve y cómo la resolví:**
-- **Qué no entiendo todavía:**
+
