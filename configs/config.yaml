@@ -1,0 +1,35 @@
+# Configuración del protocolo experimental.
+# Valores decididos por el equipo el 2026-11-15 (ver docs/02_protocolo.md).
+# Fijados ANTES de ejecutar E0. Después no se tocan.
+
+datos:
+  url: https://storage.googleapis.com/emcassavadata/cassavaleafdata.zip
+  raiz: data/cassavaleafdata        # se puede cambiar con la variable de entorno YUCA_DATOS
+  clases: [cbb, cbsd, cgm, cmd, healthy]
+
+protocolo:
+  semilla: 42
+  tamano_imagen: 224                # tamaño con el que se preentrenaron ambos backbones
+  tamano_lote: 32
+  metrica_principal: macro_f1       # con ella se elige la mejor época (en VALIDACIÓN)
+  pesos_por_clase: true             # decisión del equipo (2026-11-15): la pérdida castiga más los errores en clases escasas
+  trabajadores: 2                   # procesos que leen imágenes en paralelo
+
+e0:                                 # baseline
+  tipo: cnn_pequena                 # cnn_pequena | lineal
+  tamano_imagen: 64
+  epocas: 10
+  tasa_aprendizaje: 0.001
+
+extraccion:                         # E1 y E3: MISMOS valores para que la comparación sea justa
+  backbone_a: resnet18             # decisión del equipo (2026-11-15)
+  backbone_b: mobilenet_v2
+  epocas: 10
+  tasa_aprendizaje: 0.001
+
+ajuste_fino:                        # E2: parte del mejor E1
+  epocas: 5
+  tasa_aprendizaje: 0.0001          # 10 veces menor que en E1
+
+adicional:
+  factores_brillo: [0.5, 0.75, 1.0, 1.25, 1.5]   # 1.0 = imagen original
