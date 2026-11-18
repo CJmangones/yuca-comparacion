@@ -68,7 +68,7 @@ Lo que se elija debe aplicarse igual en E1, E2 y E3.
 - Augmentation moderado solo en el entrenamiento de E1 o E3; o
 - Perturbación de brillo sobre una copia del conjunto de prueba.
 
-**Decisión del equipo:** ______ · **Objetivo declarado:** ______
+**Decisión del equipo:** ambas. (1) Perturbación de brillo ×0,5 / ×0,75 / ×1,0 / ×1,25 / ×1,5 sobre copias del conjunto de prueba, evaluando E1 y E3 ya entrenados. (2) E1 con augmentation moderado solo en entrenamiento (`E1_aug`: recorte 70–100 %, volteo horizontal, rotación ±15°, brillo y contraste ±15 %; sin cambiar el tono), con las demás condiciones iguales a E1 · **Objetivo declarado:** medir la robustez de los modelos a cambios de iluminación y el efecto de aumentar los datos de entrenamiento · **Fecha:** 2026-11-17
 
 ## D10 · Métrica principal
 El profesor recomienda macro-F1. **Decisión del equipo:** macro-F1 · **Fecha:** 2026-11-15

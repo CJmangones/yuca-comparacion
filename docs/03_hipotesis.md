@@ -10,9 +10,10 @@ Formato sugerido: *"Creemos que ___ porque ___. Si es cierto, esperamos ver ___.
 | E0 | Aun entrenada desde cero, una red pequeña con 5.600 fotos alcanza a aprender los patrones más visibles de las enfermedades. | Macro-F1 en prueba mayor que 0,55. | Camilo Ayazo | 2026-11-15 |
 | E1 | Lo aprendido por ResNet18 en ImageNet (bordes, texturas, manchas) sirve directamente para ver lesiones en hojas, aunque solo se entrene la cabeza. | Macro-F1 al menos 0,20 por encima de E0 (es decir, mayor que 0,75 si E0 cumple su predicción). La clase más difícil (F1 más bajo) será cbsd, porque sus manchas amarillas difusas se parecen al mosaico y a hojas sanas. | Camilo Ayazo | 2026-11-15 |
 | Pesos por clase (E0–E3) | Dar más peso en la pérdida a las clases escasas mejora su detección. | El recall de cbb y healthy será mayor que sin pesos, aunque cmd pierda un poco. | Camilo Ayazo | 2026-11-15 |
-| E2 | | | | |
-| E3 | | | | |
-| Adicional | | | | |
+| E2 | Adaptar el último bloque de ResNet18 (layer4) a hojas de yuca permite aprender síntomas específicos que ImageNet no tenía. | Macro-F1 al menos 0,05 por encima de E1. | Camilo Ayazo | 2026-11-17 |
+| E3 | Con el backbone congelado, MobileNetV2 y ResNet18 aportan características parecidas porque ambas aprendieron de ImageNet; MobileNetV2 fue diseñada para celulares. | Macro-F1 parecido a E1 (diferencia de ±0,03 o menos), con menor tiempo de inferencia y menor tamaño que E1. | Camilo Ayazo | 2026-11-17 |
+| Adicional: brillo | Al aclarar, el amarillo se satura y las hojas se parecen más a las de cbb. | El macro-F1 de E1 y E3 cae más con brillo ×1,5 que con ×0,5. | Camilo Ayazo | 2026-11-17 |
+| Adicional: augmentation | Ver variaciones de las mismas fotos ayuda a no memorizar detalles irrelevantes como el fondo. | E1 con augmentation obtiene un macro-F1 un poco mayor que E1 sin augmentation. | Camilo Ayazo | 2026-11-17 |
 
 Preguntas para pensar (no son respuestas):
 - ¿Qué clases creen que serán más difíciles y por qué? (miren la distribución del inventario y algunas fotos)
