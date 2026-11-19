@@ -1,11 +1,32 @@
 # Bitácora individual
 
-Escrita por el integrante, con sus palabras. Sirve para la defensa individual:
-qué implementé, por qué tomé una decisión y qué dificultad resolví.
 
-## AAAA-MM-DD
-- **Qué hice hoy:**
-- **Qué archivo toqué / qué ejecuté:**
-- **Qué decidí y por qué:**
-- **Qué dificultad tuve y cómo la resolví:**
-- **Qué no entiendo todavía:**
+## 2026-11-19 · Cuaderno 03: E0 (baseline) y E1 (extracción de características)
+- **Qué hice hoy:** Monté Drive, descargué el dataset (1354 MB, cinco clases: cbb, cbsd, cgm, cmd y healthy) y verifiqué que Colab tuviera GPU (Tesla T4). Entrené E0, una CNN pequeña desde cero (24 133 parámetros, imágenes de 64 px, 10 épocas), y E1, que usa ResNet18 preentrenada con el backbone congelado y solo entrena la cabeza (2 565 parámetros entrenables de 11 179 077). Los datos se dividen en 5600 imágenes de entrenamiento, 1877 de validación y 1885 de prueba, con semilla 42.
+- **Qué archivo toqué / qué ejecuté:** `03_E0_E1.ipynb`. Ejecuté `ejecutar('E0')` y `ejecutar('E1')` de `src/entrenar.py`, `analisis.tabla_consolidada`, `analisis.galeria_errores('E1')` y `analisis.pares_confundidos('E1')`. También ejecuté las cuatro celdas de la demostración en vivo: cargar un lote, hacer una inferencia, recalcular macro-F1 a mano y cambiar el brillo.
+- **Qué decidí y por qué:** Usé macro-F1 como métrica principal y no solo accuracy, porque las clases están muy desbalanceadas: cmd tiene 886 imágenes de prueba y healthy solo 105. El modelo guarda el checkpoint de la mejor época según validación, no la última. Resultados en prueba: E0 con accuracy 0.5973 y macro-F1 0.4638 (mejor época 8, 350 s); E1 con accuracy 0.7411 y macro-F1 0.6590 (mejor época 8, 556 s). La transferencia aporta unos 0.20 puntos de macro-F1 frente al baseline. La clase que E0 casi no detecta es cgm (recall 0.167); E1 la sube a 0.678.
+- **Qué dificultad tuve y cómo la resolví:** La descarga y el descomprimido tardan varios minutos, así que el zip se guarda una sola vez en Drive y las fotos se descomprimen en el disco de Colab, que es más rápido. En la demostración, el lote de 8 imágenes de validación salió con las 8 etiquetas `cbb`. Ocurre porque el cargador no baraja (`barajar=False`) y las imágenes están ordenadas por clase; no es un error, pero conviene saberlo para explicarlo. En la inferencia de la foto 0 (real: cbb) el modelo acertó con solo 0.52 de confianza (cbsd tenía 0.42). Con brillo x0.5 siguió prediciendo cbb, con confianza 0.45. Comprobé que el macro-F1 calculado a mano a partir de la matriz de confusión (0.659) coincide con el de scikit-learn.
+- **Qué no entiendo todavía:** Por qué E1 se equivoca tanto cbsd → cbb (92 imágenes, 19.1 % de cbsd) y con confianzas de hasta 0.99. Por qué la pérdida de validación de E0 sube y baja tanto entre épocas (por ejemplo, 1.15 en la época 4 y 1.36 en la 5).
+
+## 2026-11-19 · Cuaderno 04: E3 (MobileNetV2) y E2 (ajuste fino), más estabilidad
+- **Qué hice hoy:** Entrené E3, que es igual a E1 pero con MobileNetV2 congelada (2 230 277 parámetros, 6 405 entrenables, 9.06 MB), para la comparación primaria E1 vs E3. Después entrené E2: parte de los pesos de la mejor época de E1, descongela el último bloque de ResNet18 (8 396 293 parámetros entrenables) y usa una tasa de aprendizaje 10 veces menor (0.0001) durante 5 épocas. Armé la tabla consolidada E0–E3 y repetí E1 y E3 con las semillas 1 y 2 para medir cuánto cambian los resultados por azar.
+- **Qué archivo toqué / qué ejecuté:** `04_E2_E3.ipynb`. Ejecuté `ejecutar('E3')`, `ejecutar('E2')`, `analisis.graficas_comparacion()`, `analisis.tabla_por_clase(metrica='recall')` y `analisis.estabilidad()`. Definí `SEMILLAS_EXTRA = [1, 2]`.
+- **Qué decidí y por qué:** Escogí dos semillas extra para ver la variación sin gastar demasiado tiempo de GPU (cada repetición de E1 o E3 tarda cerca de 9 minutos). Resultados en prueba: E3 con accuracy 0.7576 y macro-F1 0.6870 (mejor época 8, 531 s); E2 con accuracy 0.8170 y macro-F1 0.7457 (mejor época 5, 268 s). El costo acumulado de E2 es 711.8 s, porque incluye el entrenamiento de E1. Con tres semillas, E1 da macro-F1 de 0.6545 ± 0.0093 y E3 de 0.6806 ± 0.0072. E3 supera a E1 por unos 0.026, algo más que la variación entre semillas, así que la ventaja parece real, aunque tres corridas son pocas para afirmarlo con seguridad. E3 también es cinco veces más pequeña (9.06 MB frente a 44.75 MB).
+- **Qué dificultad tuve y cómo la resolví:** E2 se sobreajusta rápido: en la época 5 el macro-F1 de entrenamiento es 0.9565 y el de validación 0.7484; además, en la época 4 la pérdida de validación subió a 0.9121. Lo manejé guardando el mejor checkpoint según validación en lugar del último y usando solo 5 épocas. Otro cuidado fue interpretar bien la tabla por clase: la que imprimí es de recall, no de F1.
+- **Qué no entiendo todavía:** Por qué el ajuste fino mejora tanto cgm, cbsd y cmd, pero cbb casi no mejora (recall 0.529, frente a 0.632 de E3). Por qué la latencia con lote de 1 imagen es mayor en MobileNetV2 (6.2 ms) que en ResNet18 (3.9 ms) si tiene muchos menos parámetros.
+
+## 2026-11-19 · Cuaderno 05: experimento adicional (brillo) y análisis de errores
+- **Qué hice hoy:** Elegí la opción A, robustez al brillo: sin reentrenar, evalué E1 y E3 sobre copias del conjunto de prueba con el brillo multiplicado por 0.5, 0.75, 1.0, 1.25 y 1.5. Luego revisé las confusiones más frecuentes de E1, E2 y E3, las ocho fotos con error más seguro de E1 y de E3, comparé en qué fotos se equivocan E1 y E3, y generé galerías de Grad-CAM de 4 imágenes por modelo.
+- **Qué archivo toqué / qué ejecuté:** `05_adicional_y_analisis.ipynb`. Ejecuté `adicional.ejecutar(('E1', 'E3'))`, `analisis.pares_confundidos`, `analisis.galeria_errores`, un `pd.crosstab` de aciertos de E1 contra E3, `analisis.gradcam_galeria` y la tabla final. Dejé `EJECUTAR_AUGMENTATION = False`.
+- **Qué decidí y por qué:** No hice la opción B (augmentation) porque el profesor exige una de las dos opciones y la A no requiere entrenar. El factor 1.0 reprodujo exactamente los resultados originales (E1 0.6590 y E3 0.6870), lo que confirma que la evaluación es consistente. Con brillo 0.5, el macro-F1 baja a 0.6041 en E1 y a 0.6281 en E3; con 1.5, baja a 0.6184 y 0.6163. Ambos modelos son sensibles al brillo, sobre todo en los extremos, y E3 sigue por encima de E1 salvo en 1.5, donde quedan casi iguales. La clase healthy es la más afectada: su recall sube con fotos oscuras (E1: 0.857 con x0.5) y cae con fotos claras (E1: 0.486 con x1.5; E3: 0.419).
+- **Qué dificultad tuve y cómo la resolví:** Para no escoger errores a conveniencia usé el criterio fijo de la guía (los ocho errores con mayor confianza). Varias fotos fallan en ambos modelos: `test-cbsd-311`, `test-cbsd-215`, `test-cgm-136` y `test-cgm-102`. Del total de 1885 imágenes de prueba, ambos aciertan en 1229, ambos fallan en 289, solo E3 acierta en 199 y solo E1 acierta en 168. Es decir, los modelos comparten muchos errores, pero no todos. El ajuste fino redujo mucho la confusión cbsd → cbb (92 en E1, 33 en E2, 106 en E3).
+- **Qué no entiendo todavía:** Por qué las fotos oscuras favorecen predecir healthy y las claras lo perjudican. Qué muestran exactamente los mapas Grad-CAM (anoto aquí lo que observe en las 4 imágenes de cada modelo; recordar que no demuestran causalidad). Mis hipótesis sobre los errores (síntomas parecidos, fondo, iluminación, foto borrosa, lesión pequeña o etiqueta dudosa) falta escribirlas en `docs/04_analisis_errores.md`.
+
+## Resumen de resultados (prueba, semilla 42)
+
+| Exp. | Modelo | Accuracy | Macro-F1 | Entren. (s) | Parámetros entrenables |
+|---|---|---|---|---|---|
+| E0 | cnn_pequena | 0.5973 | 0.4638 | 349.9 | 24 133 |
+| E1 | resnet18 (congelada) | 0.7411 | 0.6590 | 555.9 | 2 565 |
+| E2 | resnet18 (ajuste fino) | 0.8170 | 0.7457 | 268.0 (711.8 acumulado) | 8 396 293 |
+| E3 | mobilenet_v2 (congelada) | 0.7576 | 0.6870 | 531.2 | 6 405 |
