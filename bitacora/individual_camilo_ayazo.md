@@ -40,6 +40,13 @@ Responsabilidad principal: datos (fuente, inventario, EDA, duplicados y fugas).
 - **E0 y E1:** se entrenaron en Colab con GPU T4. E0 obtuvo macro-F1 0,464 y E1 0,659. Mi hipótesis de E0 (> 0,55) no se cumplió y la de E1 (+0,20) quedó a 0,005 del umbral; la considero cumplida en esencia. La clase más difícil no fue cbsd, como esperaba, sino cbb. Al ver los errores, creo que se combinan síntomas parecidos entre cbb y cbsd, un posible atajo de "hoja amarilla = cbb" y las etiquetas dudosas que encontramos en los duplicados.
 - **Por qué E0 quedó por debajo de lo que predije:** creo que al reducir las fotos a 64×64 se pierde el detalle y desaparecen las manchas pequeñas que distinguen las enfermedades.
 
+---
 
+## Plantilla para las siguientes entradas
 
-
+## AAAA-MM-DD
+- **Qué hice hoy:**
+- **Qué archivo toqué / qué ejecuté:**
+- **Qué decidí y por qué:**
+- **Qué dificultad tuve y cómo la resolví:**
+- **Qué no entiendo todavía:**
