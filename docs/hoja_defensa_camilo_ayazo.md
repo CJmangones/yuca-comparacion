@@ -1,4 +1,4 @@
-# Hoja de defensa · Camilo De Jesús Ayazo Argel · Control del día 7
+# Hoja de defensa · Camilo Mangones Florez · Control del día 7
 
 Todo lo de esta hoja sale de lo que hicimos y de lo que yo decidí (bitácora, protocolo e hipótesis).
 Leerla en voz alta dos o tres veces y luego decirlo con mis palabras, sin leer.
