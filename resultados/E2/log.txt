@@ -1,0 +1,12 @@
+[2026-11-18 04:37:23] === E2: Parte de E1; bloque final del backbone A descongelado ===
+[2026-11-18 04:37:23] Dispositivo: Tesla T4 | semilla: 42
+[2026-11-18 04:37:23] Imágenes: train=5600 val=1877 test=1885
+[2026-11-18 04:37:26] Pesos iniciales tomados de checkpoints/E1.pt (mejor época de E1)
+[2026-11-18 04:37:26] Parámetros: 11,179,077 totales, 8,396,293 entrenables, 44.75 MB
+[2026-11-18 04:38:19] Época  1/5 | train pérdida 0.9079 F1 0.5986 | val pérdida 0.6738 F1 0.6956 acc 0.7677  <- mejor hasta ahora (guardado)
+[2026-11-18 04:39:12] Época  2/5 | train pérdida 0.5704 F1 0.7353 | val pérdida 0.6317 F1 0.7211 acc 0.7885  <- mejor hasta ahora (guardado)
+[2026-11-18 04:40:04] Época  3/5 | train pérdida 0.3629 F1 0.8353 | val pérdida 0.6112 F1 0.7118 acc 0.7837
+[2026-11-18 04:40:58] Época  4/5 | train pérdida 0.2007 F1 0.9027 | val pérdida 0.9121 F1 0.6652 acc 0.6974
+[2026-11-18 04:41:49] Época  5/5 | train pérdida 0.0911 F1 0.9565 | val pérdida 0.7259 F1 0.7484 acc 0.8141  <- mejor hasta ahora (guardado)
+[2026-11-18 04:42:05] PRUEBA -> accuracy 0.8170 | macro-F1 0.7457 | mejor época 5 | entrenamiento 263 s
+[2026-11-18 04:42:05] Resultados guardados en resultados/E2/

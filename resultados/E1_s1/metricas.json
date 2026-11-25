@@ -1,0 +1,90 @@
+{
+  "accuracy": 0.7358090185676393,
+  "macro_f1": 0.643809603196804,
+  "por_clase": {
+    "cbb": {
+      "precision": 0.44274809160305345,
+      "recall": 0.3741935483870968,
+      "f1": 0.40559440559440557,
+      "imagenes": 155
+    },
+    "cbsd": {
+      "precision": 0.7185501066098081,
+      "recall": 0.7006237006237006,
+      "f1": 0.7094736842105264,
+      "imagenes": 481
+    },
+    "cgm": {
+      "precision": 0.5870967741935483,
+      "recall": 0.7054263565891473,
+      "f1": 0.6408450704225352,
+      "imagenes": 258
+    },
+    "cmd": {
+      "precision": 0.8977832512315271,
+      "recall": 0.8227990970654627,
+      "f1": 0.8586572438162544,
+      "imagenes": 886
+    },
+    "healthy": {
+      "precision": 0.49693251533742333,
+      "recall": 0.7714285714285715,
+      "f1": 0.6044776119402985,
+      "imagenes": 105
+    }
+  },
+  "matriz_confusion": [
+    [
+      58,
+      51,
+      17,
+      12,
+      17
+    ],
+    [
+      49,
+      337,
+      33,
+      30,
+      32
+    ],
+    [
+      13,
+      17,
+      182,
+      36,
+      10
+    ],
+    [
+      8,
+      54,
+      72,
+      729,
+      23
+    ],
+    [
+      3,
+      10,
+      6,
+      5,
+      81
+    ]
+  ],
+  "experimento": "E1_s1",
+  "modelo": "resnet18",
+  "descripcion": "Backbone A congelado, solo cabeza",
+  "mejor_epoca": 6,
+  "val_macro_f1_mejor": 0.6571921546949958,
+  "tiempo_entrenamiento_s": 527.1,
+  "tiempo_entrenamiento_acumulado_s": 527.1,
+  "tiempo_prueba_completa_s": 13.5,
+  "inferencia": {
+    "ms_por_imagen_lote_1": 3.336,
+    "ms_por_imagen_lote_32": 0.883
+  },
+  "memoria_gpu_max_mb": 286.6,
+  "dispositivo": "Tesla T4",
+  "parametros_totales": 11179077,
+  "parametros_entrenables": 2565,
+  "tamano_mb": 44.75
+}

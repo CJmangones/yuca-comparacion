@@ -75,12 +75,12 @@
   "descripcion": "Backbone A congelado, solo cabeza",
   "mejor_epoca": 8,
   "val_macro_f1_mejor": 0.6616707719458302,
-  "tiempo_entrenamiento_s": 542.7,
-  "tiempo_entrenamiento_acumulado_s": 542.7,
-  "tiempo_prueba_completa_s": 14.2,
+  "tiempo_entrenamiento_s": 539.4,
+  "tiempo_entrenamiento_acumulado_s": 539.4,
+  "tiempo_prueba_completa_s": 13.6,
   "inferencia": {
-    "ms_por_imagen_lote_1": 3.717,
-    "ms_por_imagen_lote_32": 0.9
+    "ms_por_imagen_lote_1": 3.849,
+    "ms_por_imagen_lote_32": 0.858
   },
   "memoria_gpu_max_mb": 287.0,
   "dispositivo": "Tesla T4",

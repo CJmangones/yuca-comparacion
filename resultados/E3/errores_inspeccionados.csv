@@ -1,0 +1,9 @@
+ruta,real,predicha,confianza,acierto,p_cbb,p_cbsd,p_cgm,p_cmd,p_healthy
+test/cbsd/test-cbsd-311.jpg,cbsd,cbb,0.9941,False,0.9941,0.0056,0.0001,0.0002,0.0
+test/cbb/test-cbb-72.jpg,cbb,cgm,0.9902,False,0.0028,0.0007,0.9902,0.006,0.0002
+test/cgm/test-cgm-102.jpg,cgm,cbb,0.9848,False,0.9848,0.015,0.0001,0.0001,0.0
+test/cbsd/test-cbsd-215.jpg,cbsd,cbb,0.982,False,0.982,0.0171,0.0005,0.0004,0.0
+test/cbsd/test-cbsd-322.jpg,cbsd,cbb,0.9785,False,0.9785,0.0204,0.0002,0.001,0.0
+test/cgm/test-cgm-136.jpg,cgm,cbb,0.9715,False,0.9715,0.0086,0.0127,0.0071,0.0
+test/cgm/test-cgm-151.jpg,cgm,cmd,0.9687,False,0.0021,0.0027,0.0263,0.9687,0.0003
+test/cbb/test-cbb-75.jpg,cbb,cmd,0.9603,False,0.0076,0.0191,0.0113,0.9603,0.0016

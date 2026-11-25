@@ -1,0 +1,90 @@
+{
+  "accuracy": 0.8169761273209549,
+  "macro_f1": 0.7457006868821615,
+  "por_clase": {
+    "cbb": {
+      "precision": 0.6307692307692307,
+      "recall": 0.5290322580645161,
+      "f1": 0.5754385964912281,
+      "imagenes": 155
+    },
+    "cbsd": {
+      "precision": 0.8588235294117647,
+      "recall": 0.7588357588357588,
+      "f1": 0.8057395143487859,
+      "imagenes": 481
+    },
+    "cgm": {
+      "precision": 0.6711409395973155,
+      "recall": 0.7751937984496124,
+      "f1": 0.7194244604316546,
+      "imagenes": 258
+    },
+    "cmd": {
+      "precision": 0.8920704845814978,
+      "recall": 0.9142212189616253,
+      "f1": 0.903010033444816,
+      "imagenes": 886
+    },
+    "healthy": {
+      "precision": 0.6693548387096774,
+      "recall": 0.7904761904761904,
+      "f1": 0.7248908296943232,
+      "imagenes": 105
+    }
+  },
+  "matriz_confusion": [
+    [
+      82,
+      34,
+      10,
+      19,
+      10
+    ],
+    [
+      33,
+      365,
+      29,
+      36,
+      18
+    ],
+    [
+      10,
+      6,
+      200,
+      39,
+      3
+    ],
+    [
+      3,
+      13,
+      50,
+      810,
+      10
+    ],
+    [
+      2,
+      7,
+      9,
+      4,
+      83
+    ]
+  ],
+  "experimento": "E2",
+  "modelo": "resnet18",
+  "descripcion": "Parte de E1; bloque final del backbone A descongelado",
+  "mejor_epoca": 5,
+  "val_macro_f1_mejor": 0.7483756653949822,
+  "tiempo_entrenamiento_s": 262.9,
+  "tiempo_entrenamiento_acumulado_s": 694.8,
+  "tiempo_prueba_completa_s": 14.5,
+  "inferencia": {
+    "ms_por_imagen_lote_1": 3.85,
+    "ms_por_imagen_lote_32": 0.883
+  },
+  "memoria_gpu_max_mb": 433.9,
+  "dispositivo": "Tesla T4",
+  "parametros_totales": 11179077,
+  "parametros_entrenables": 8396293,
+  "tamano_mb": 44.75
+}

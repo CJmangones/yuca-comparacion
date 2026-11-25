@@ -75,11 +75,11 @@
   "descripcion": "Baseline sin preentrenamiento",
   "mejor_epoca": 8,
   "val_macro_f1_mejor": 0.4531794264775306,
-  "tiempo_entrenamiento_s": 347.7,
-  "tiempo_entrenamiento_acumulado_s": 347.7,
-  "tiempo_prueba_completa_s": 8.5,
+  "tiempo_entrenamiento_s": 342.2,
+  "tiempo_entrenamiento_acumulado_s": 342.2,
+  "tiempo_prueba_completa_s": 9.3,
   "inferencia": {
-    "ms_por_imagen_lote_1": 0.576,
+    "ms_por_imagen_lote_1": 0.608,
     "ms_por_imagen_lote_32": 0.033
   },
   "memoria_gpu_max_mb": 92.7,
