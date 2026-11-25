@@ -14,6 +14,7 @@ protocolo:
   metrica_principal: macro_f1       # con ella se elige la mejor época (en VALIDACIÓN)
   pesos_por_clase: true             # decisión del equipo (2026-11-15): la pérdida castiga más los errores en clases escasas
   trabajadores: 2                   # procesos que leen imágenes en paralelo
+  particion: original               # original | balanceada (revisión del día 7: prueba de 200 por clase)
 
 e0:                                 # baseline
   tipo: cnn_pequena                 # cnn_pequena | lineal
@@ -24,6 +25,7 @@ e0:                                 # baseline
 extraccion:                         # E1 y E3: MISMOS valores para que la comparación sea justa
   backbone_a: resnet18             # decisión del equipo (2026-11-15)
   backbone_b: mobilenet_v2
+  backbone_c: resnet50              # decisión del equipo (2026-11-21): tercer modelo, E4
   epocas: 10
   tasa_aprendizaje: 0.001
 
