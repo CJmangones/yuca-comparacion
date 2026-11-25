@@ -16,6 +16,7 @@ protocolo experimental común?
 | E1 | Backbone A (ResNet18) congelado + cabeza | ¿Qué aporta el aprendizaje por transferencia? |
 | E2 | Parte de E1; bloque final descongelado, tasa menor | ¿Mejora frente a E1 y a qué costo? |
 | E3 | Backbone B (MobileNetV2) congelado + cabeza | ¿Qué arquitectura ofrece mejor compromiso? |
+| E4 | Backbone C (ResNet50) congelado + cabeza | Tercer modelo (revisión del día 7) |
 | Adicional | Brillo sobre copia de la prueba (o augmentation en E1) | Robustez |
 
 ## Estructura
@@ -23,7 +24,7 @@ protocolo experimental común?
 | Carpeta | Contenido |
 |---|---|
 | `src/` | Código: `datos`, `eda`, `dataset`, `modelos`, `entrenar`, `evaluar`, `adicional`, `analisis`, `comun` |
-| `notebooks/` | 01 datos · 02 EDA y duplicados · 03 E0 y E1 · 04 E2 y E3 · 05 adicional y análisis |
+| `notebooks/` | 01 datos · 02 EDA y duplicados · 03 E0 y E1 · 04 E2 y E3 · 05 adicional y análisis · 06 tercer modelo y partición balanceada |
 | `configs/config.yaml` | Protocolo: semilla, tamaños, épocas, tasas |
 | `resultados/` | Una carpeta por experimento: configuración, log, historial, métricas, gráficas, predicciones |
 | `docs/` | Conceptos, cómo se hizo, ficha de datos, protocolo, hipótesis, guías de las dos entregas, declaración de IA |

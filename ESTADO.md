@@ -16,7 +16,7 @@ cuando el equipo la ejecutó con los datos reales y la evidencia está en el rep
 | 6 | Hipótesis previas | E0 y E1 completadas; faltan E2, E3 y adicional | `docs/03_hipotesis.md` |
 | 7 | EDA y control de duplicados | Completada y verificada (2026-11-15) | `resultados/eda/`, `excluidos.csv` |
 | 8 | E0 | Completada y verificada (2026-11-15) | `resultados/E0/` |
-| 9 | E1 | Semilla 42 completada (2026-11-15); faltan semillas 1 y 2 | `resultados/E1/` |
+| 9 | E1 | Completada y verificada: semillas 42, 1 y 2 | `resultados/E1/` |
 | 10 | Métricas iniciales y registro de errores | Completada (falta lectura de E0) | notebook 03, `docs/04_analisis_errores.md` |
 | 11 | Bitácoras | Grupal y Camilo Ayazo al día; faltan las de los otros dos integrantes | `bitacora/` |
 | 12 | Ensayo de demostración en vivo | Pendiente (equipo) | `docs/entrega1_guia.md` |
@@ -24,12 +24,20 @@ cuando el equipo la ejecutó con los datos reales y la evidencia está en el rep
 ## Entrega 2 (final)
 | # | Actividad | Estado | Evidencia |
 |---|---|---|---|
-| 13 | E3 | Pendiente (ejecutar notebook 04) | `resultados/E3/` |
-| 14 | E2 | Pendiente (ejecutar notebook 04) | `resultados/E2/` |
-| 15 | Tabla consolidada y estabilidad | Pendiente | `resultados/tabla_consolidada.csv` |
-| 16 | Experimento adicional | Pendiente (ejecutar notebook 05) | `resultados/adicional_brillo/` |
-| 17 | Inspección de 8 errores y Grad-CAM | Pendiente (equipo) | `docs/04_analisis_errores.md` |
-| 18 | Conclusiones | Pendiente (equipo) | informe |
-| 19 | Informe Word y PDF (máx. 10 páginas) | Pendiente (requiere resultados reales) | `informe/` |
+| 13 | E3 | Completada y verificada (2026-11-18), 3 semillas | `resultados/E3/` |
+| 14 | E2 | Completada y verificada (2026-11-18) | `resultados/E2/` |
+| 15 | Tabla consolidada y estabilidad | Completada y verificada (2026-11-18) | `resultados/tabla_consolidada.csv` |
+| 16 | Experimento adicional | Completada y verificada: brillo y augmentation (2026-11-18) | `resultados/adicional_brillo/` |
+| 17 | Inspección de 8 errores y Grad-CAM | Completada (2026-11-18) | `docs/04_analisis_errores.md` |
+| 18 | Conclusiones | Completada (`docs/05_conclusiones.md`) | informe |
+| 19 | Informe Word y PDF (9 páginas + anexos) | Completada (2026-11-25) | `docs/informe/` |
 | 20 | Guiones finales y simulacros | Pendiente (requiere resultados reales) | `docs/entrega2_guia.md` |
-| 21 | Declaración de IA y control de calidad final | En proceso | `docs/declaracion_uso_ia.md` |
+| 21 | Declaración de IA y control de calidad final | Completada (2026-11-25) | `docs/declaracion_uso_ia.md` |
+
+## Revisión del día 7
+| # | Actividad | Estado | Evidencia |
+|---|---|---|---|
+| 22 | Formato, resolución y comparación con otras fuentes de datos | Completada (2026-11-24) | `docs/01_ficha_datos.md` |
+| 23 | Partición balanceada (prueba 200 por clase) | Completada y verificada (2026-11-24) | `resultados/particion_balanceada.csv` |
+| 24 | E0 a E4 en la partición balanceada | Completada y verificada (2026-11-25) | `resultados/B_E*`, `tabla_consolidada_balanceada.csv` |
+| 25 | Estabilidad de E1, E3 y E4 (semillas 42, 1, 2) | Completada y verificada (2026-11-25) | `estabilidad_detalle_balanceada.csv` |
