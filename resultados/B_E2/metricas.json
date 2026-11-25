@@ -1,0 +1,90 @@
+{
+  "accuracy": 0.735,
+  "macro_f1": 0.7330061601445897,
+  "por_clase": {
+    "cbb": {
+      "precision": 0.7172774869109948,
+      "recall": 0.685,
+      "f1": 0.7007672634271099,
+      "imagenes": 200
+    },
+    "cbsd": {
+      "precision": 0.6696428571428571,
+      "recall": 0.75,
+      "f1": 0.7075471698113207,
+      "imagenes": 200
+    },
+    "cgm": {
+      "precision": 0.827027027027027,
+      "recall": 0.765,
+      "f1": 0.7948051948051948,
+      "imagenes": 200
+    },
+    "cmd": {
+      "precision": 0.6559139784946236,
+      "recall": 0.915,
+      "f1": 0.7640918580375783,
+      "imagenes": 200
+    },
+    "healthy": {
+      "precision": 0.9256198347107438,
+      "recall": 0.56,
+      "f1": 0.6978193146417445,
+      "imagenes": 200
+    }
+  },
+  "matriz_confusion": [
+    [
+      137,
+      29,
+      10,
+      23,
+      1
+    ],
+    [
+      19,
+      150,
+      8,
+      21,
+      2
+    ],
+    [
+      10,
+      5,
+      153,
+      26,
+      6
+    ],
+    [
+      5,
+      10,
+      2,
+      183,
+      0
+    ],
+    [
+      20,
+      30,
+      12,
+      26,
+      112
+    ]
+  ],
+  "experimento": "B_E2",
+  "modelo": "resnet18",
+  "descripcion": "Parte de E1; bloque final del backbone A descongelado",
+  "mejor_epoca": 5,
+  "val_macro_f1_mejor": 0.7330221363005907,
+  "tiempo_entrenamiento_s": 293.2,
+  "tiempo_entrenamiento_acumulado_s": 880.4,
+  "tiempo_prueba_completa_s": 7.6,
+  "inferencia": {
+    "ms_por_imagen_lote_1": 3.855,
+    "ms_por_imagen_lote_32": 0.886
+  },
+  "memoria_gpu_max_mb": 435.0,
+  "dispositivo": "Tesla T4",
+  "parametros_totales": 11179077,
+  "parametros_entrenables": 8396293,
+  "tamano_mb": 44.75
+}

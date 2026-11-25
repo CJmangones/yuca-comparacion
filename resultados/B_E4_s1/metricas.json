@@ -1,0 +1,90 @@
+{
+  "accuracy": 0.742,
+  "macro_f1": 0.7403609603598722,
+  "por_clase": {
+    "cbb": {
+      "precision": 0.7329545454545454,
+      "recall": 0.645,
+      "f1": 0.6861702127659575,
+      "imagenes": 200
+    },
+    "cbsd": {
+      "precision": 0.665,
+      "recall": 0.665,
+      "f1": 0.665,
+      "imagenes": 200
+    },
+    "cgm": {
+      "precision": 0.8,
+      "recall": 0.72,
+      "f1": 0.7578947368421053,
+      "imagenes": 200
+    },
+    "cmd": {
+      "precision": 0.7345132743362832,
+      "recall": 0.83,
+      "f1": 0.7793427230046949,
+      "imagenes": 200
+    },
+    "healthy": {
+      "precision": 0.7798165137614679,
+      "recall": 0.85,
+      "f1": 0.8133971291866029,
+      "imagenes": 200
+    }
+  },
+  "matriz_confusion": [
+    [
+      129,
+      34,
+      12,
+      12,
+      13
+    ],
+    [
+      29,
+      133,
+      10,
+      11,
+      17
+    ],
+    [
+      5,
+      10,
+      144,
+      31,
+      10
+    ],
+    [
+      2,
+      16,
+      8,
+      166,
+      8
+    ],
+    [
+      11,
+      7,
+      6,
+      6,
+      170
+    ]
+  ],
+  "experimento": "B_E4_s1",
+  "modelo": "resnet50",
+  "descripcion": "Backbone C congelado, solo cabeza",
+  "mejor_epoca": 8,
+  "val_macro_f1_mejor": 0.7181645599596511,
+  "tiempo_entrenamiento_s": 622.5,
+  "tiempo_entrenamiento_acumulado_s": 622.5,
+  "tiempo_prueba_completa_s": 7.4,
+  "inferencia": {
+    "ms_por_imagen_lote_1": 7.567,
+    "ms_por_imagen_lote_32": 2.936
+  },
+  "memoria_gpu_max_mb": 465.5,
+  "dispositivo": "Tesla T4",
+  "parametros_totales": 23518277,
+  "parametros_entrenables": 10245,
+  "tamano_mb": 94.29
+}

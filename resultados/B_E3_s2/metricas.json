@@ -1,0 +1,90 @@
+{
+  "accuracy": 0.72,
+  "macro_f1": 0.7201893136167206,
+  "por_clase": {
+    "cbb": {
+      "precision": 0.7484662576687117,
+      "recall": 0.61,
+      "f1": 0.6721763085399449,
+      "imagenes": 200
+    },
+    "cbsd": {
+      "precision": 0.6008771929824561,
+      "recall": 0.685,
+      "f1": 0.6401869158878505,
+      "imagenes": 200
+    },
+    "cgm": {
+      "precision": 0.7242990654205608,
+      "recall": 0.775,
+      "f1": 0.748792270531401,
+      "imagenes": 200
+    },
+    "cmd": {
+      "precision": 0.7560975609756098,
+      "recall": 0.775,
+      "f1": 0.7654320987654321,
+      "imagenes": 200
+    },
+    "healthy": {
+      "precision": 0.7947368421052632,
+      "recall": 0.755,
+      "f1": 0.7743589743589744,
+      "imagenes": 200
+    }
+  },
+  "matriz_confusion": [
+    [
+      122,
+      40,
+      16,
+      13,
+      9
+    ],
+    [
+      21,
+      137,
+      18,
+      10,
+      14
+    ],
+    [
+      3,
+      8,
+      155,
+      21,
+      13
+    ],
+    [
+      5,
+      20,
+      17,
+      155,
+      3
+    ],
+    [
+      12,
+      23,
+      8,
+      6,
+      151
+    ]
+  ],
+  "experimento": "B_E3_s2",
+  "modelo": "mobilenet_v2",
+  "descripcion": "Backbone B congelado, solo cabeza",
+  "mejor_epoca": 5,
+  "val_macro_f1_mejor": 0.7148068984636258,
+  "tiempo_entrenamiento_s": 577.2,
+  "tiempo_entrenamiento_acumulado_s": 577.2,
+  "tiempo_prueba_completa_s": 6.2,
+  "inferencia": {
+    "ms_por_imagen_lote_1": 6.931,
+    "ms_por_imagen_lote_32": 0.944
+  },
+  "memoria_gpu_max_mb": 381.6,
+  "dispositivo": "Tesla T4",
+  "parametros_totales": 2230277,
+  "parametros_entrenables": 6405,
+  "tamano_mb": 9.06
+}

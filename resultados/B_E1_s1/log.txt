@@ -1,0 +1,17 @@
+[2026-11-25 05:17:15] === B_E1_s1: Backbone A congelado, solo cabeza ===
+[2026-11-25 05:17:15] Dispositivo: Tesla T4 | semilla: 1
+[2026-11-25 05:17:15] Partición: balanceada
+[2026-11-25 05:17:15] Imágenes: train=7337 val=1000 test=1000
+[2026-11-25 05:17:16] Parámetros: 11,179,077 totales, 2,565 entrenables, 44.75 MB
+[2026-11-25 05:18:14] Época  1/10 | train pérdida 1.2448 F1 0.4167 | val pérdida 1.0292 F1 0.6211 acc 0.6240  <- mejor hasta ahora (guardado)
+[2026-11-25 05:19:15] Época  2/10 | train pérdida 0.9962 F1 0.5139 | val pérdida 0.9442 F1 0.6580 acc 0.6620  <- mejor hasta ahora (guardado)
+[2026-11-25 05:20:15] Época  3/10 | train pérdida 0.9420 F1 0.5274 | val pérdida 0.8580 F1 0.6738 acc 0.6760  <- mejor hasta ahora (guardado)
+[2026-11-25 05:21:15] Época  4/10 | train pérdida 0.8867 F1 0.5371 | val pérdida 0.8697 F1 0.6664 acc 0.6720
+[2026-11-25 05:22:14] Época  5/10 | train pérdida 0.8686 F1 0.5444 | val pérdida 0.8370 F1 0.6757 acc 0.6820  <- mejor hasta ahora (guardado)
+[2026-11-25 05:23:13] Época  6/10 | train pérdida 0.8440 F1 0.5588 | val pérdida 0.8759 F1 0.6786 acc 0.6800  <- mejor hasta ahora (guardado)
+[2026-11-25 05:24:12] Época  7/10 | train pérdida 0.8315 F1 0.5680 | val pérdida 0.9649 F1 0.6557 acc 0.6660
+[2026-11-25 05:25:10] Época  8/10 | train pérdida 0.8355 F1 0.5729 | val pérdida 0.8147 F1 0.6985 acc 0.6980  <- mejor hasta ahora (guardado)
+[2026-11-25 05:26:10] Época  9/10 | train pérdida 0.8101 F1 0.5763 | val pérdida 0.8522 F1 0.6687 acc 0.6690
+[2026-11-25 05:27:09] Época 10/10 | train pérdida 0.7878 F1 0.5765 | val pérdida 0.7896 F1 0.7071 acc 0.7080  <- mejor hasta ahora (guardado)
+[2026-11-25 05:27:16] PRUEBA -> accuracy 0.6860 | macro-F1 0.6856 | mejor época 10 | entrenamiento 593 s
+[2026-11-25 05:27:16] Resultados guardados en resultados/B_E1_s1/

@@ -1,0 +1,22 @@
+{
+  "experimento": "B_E4_s1",
+  "tamano": 224,
+  "aumento": false,
+  "parte_de": null,
+  "ajuste_fino": false,
+  "modelo": "resnet50",
+  "epocas": 10,
+  "tasa": 0.001,
+  "descripcion": "Backbone C congelado, solo cabeza",
+  "semilla": 1,
+  "tamano_lote": 32,
+  "pesos_por_clase": true,
+  "optimizador": "Adam",
+  "preentrenado": true,
+  "limite_prueba_rapida": null,
+  "dispositivo": "Tesla T4",
+  "torch": "2.14.1+cu130",
+  "parametros_totales": 23518277,
+  "parametros_entrenables": 10245,
+  "tamano_mb": 94.29
+}

@@ -1,0 +1,9 @@
+ruta,real,predicha,confianza,acierto,p_cbb,p_cbsd,p_cgm,p_cmd,p_healthy
+validation/cbsd/validation-cbsd-294.jpg,cbsd,cbb,0.9839,False,0.9839,0.0153,0.0003,0.0004,0.0
+train/cmd/train-cmd-1989.jpg,cmd,cbb,0.9824,False,0.9824,0.0167,0.0001,0.0007,0.0001
+train/cbb/train-cbb-59.jpg,cbb,cgm,0.9809,False,0.0131,0.0059,0.9809,0.0,0.0
+validation/cbb/validation-cbb-149.jpg,cbb,cmd,0.979,False,0.0018,0.003,0.0148,0.979,0.0015
+train/cbb/train-cbb-163.jpg,cbb,cgm,0.9756,False,0.0093,0.008,0.9756,0.0047,0.0024
+test/cgm/test-cgm-23.jpg,cgm,cmd,0.9728,False,0.007,0.0066,0.009,0.9728,0.0045
+train/cgm/train-cgm-285.jpg,cgm,cmd,0.9685,False,0.0003,0.0002,0.031,0.9685,0.0001
+train/cbsd/train-cbsd-255.jpg,cbsd,cbb,0.9635,False,0.9635,0.0241,0.0016,0.0085,0.0023
