@@ -85,3 +85,11 @@ Ver notebook 02, sección 7. **Fecha:** 2026-11-15 (Camilo Ayazo).
 - `RETIRAR_CONFLICTIVAS = True` (opción agregada al código tras ver los datos): si una misma foto aparece con etiquetas distintas, se retiran todas sus copias de entrenamiento y validación. **Motivo:** que el modelo no aprenda de una etiqueta dudosa.
 - **Prueba:** no se modifica; se usan las 1.885 fotos publicadas y se declara como limitación que unas 10 tienen etiqueta contradicha por una copia idéntica.
 - **Imágenes retiradas:** 68 (56 de entrenamiento y 12 de validación). Particiones finales: **5.600 / 1.877 / 1.885**. Lista en `resultados/excluidos.csv`.
+
+## D12 · Tercer modelo (revisión del día 7)
+**Decisión del equipo:** E4 = ResNet50 preentrenada en ImageNet (torchvision), backbone congelado y cabeza `Dropout + Linear(2048 → 5)`, con el mismo entrenamiento que E1 y E3 (10 épocas, tasa 0,001, semilla 42). 23,5 M de parámetros, 10.245 entrenables, 94 MB. **Motivo:** ver si una red más grande de la misma familia que ResNet18 mejora la extracción de características · **Fecha:** 2026-11-21
+
+## D13 · Partición balanceada (revisión del día 7)
+**Decisión del equipo:** además de la partición publicada, se crea una partición nueva (`resultados/particion_balanceada.csv`, `src/particion.py`): prueba de 1.000 imágenes balanceada (200 por clase), validación de 1.000 balanceada (200 por clase) y entrenamiento con el resto (7.337). Fotos idénticas o casi idénticas forman un grupo que va entero a una sola partición; los grupos con etiquetas distintas se retiran completos (63 imágenes) y de cada grupo se conserva una copia (30 copias retiradas). Quedan 9.337 imágenes. Se ejecutan E0 a E4 con semilla 42; los resultados se guardan con prefijo `B_`.
+**Motivo:** el profesor pidió una prueba de 1.000 imágenes bien repartidas, para que las métricas por clase sean comparables.
+**Limitación aceptada:** con 200 + 200 por clase, healthy entrena solo con 124 fotos y cbb con 358 (frente a 316 y 466 en la partición original). Se consideró validación de 100 por clase (healthy con 224) y el equipo decidió mantener 200 · **Fecha:** 2026-11-21

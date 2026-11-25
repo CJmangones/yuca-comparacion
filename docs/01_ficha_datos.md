@@ -43,3 +43,21 @@ para conservar la partición publicada; se declara como limitación.
 ## Nota sobre las cantidades
 El artículo original informa 9.436 imágenes etiquetadas; la versión de TensorFlow Datasets que descargamos tiene 9.430.
 La diferencia (6 imágenes) viene de la versión publicada, no de nuestra descarga.
+
+## Formato, resolución y peso (revisión del día 7, 2026-11-21)
+- **Formato:** las 9.430 imágenes son JPG. **Color:** las 9.430 están en RGB.
+- **Resolución:** 669 tamaños distintos; los más comunes son 500×666 (2.369), 888×500 (1.328), 625×500 (1.073), 666×500 (1.070) y 500×500 (719). Ninguna mide menos de 224 px en algún lado, así que al llevarlas a 224×224 nunca se agrandan.
+- **Megapíxeles por clase (mediana):** 0,31–0,33 en todas las clases.
+- **Peso del archivo por clase (mediana):** cbb 96 KB · cbsd 134 KB · cgm 120 KB · cmd 163 KB · healthy 61 KB. Con la misma resolución, las fotos sanas pesan menos de la mitad que las de cmd. Puede deberse a que las hojas con síntomas tienen más detalle y comprimen peor, o a diferencias en cómo se tomaron o guardaron las fotos de cada clase; queda como posible atajo a vigilar.
+
+## Comparación con otras fuentes de imágenes de yuca (revisión del día 7, 2026-11-24)
+El profesor pidió verificar que no se trate del mismo dataset. Se revisaron las cuatro fuentes indicadas:
+
+| Fuente | Imágenes | Clases | Origen | ¿Se usó? |
+|---|---|---|---|---|
+| TensorFlow Datasets – cassava (iCassava 2019) | 9.430 (5.656 / 1.889 / 1.885) | 5: cbb, cbsd, cgm, cmd, healthy | Uganda, Makerere AI Lab y NaCRRI | **Sí** |
+| Kaggle 2020 – Cassava Leaf Disease Classification | 21.367 | 5 (las mismas) | Uganda, mismo laboratorio | No (otra competencia) |
+| Mendeley Data 2021 (Divyanth et al.) | No indicado | 3: sana, CBB, mosaico | India (Tamil Nadu), IIT Kharagpur | No |
+| Harvard Dataverse 2022 (Tusubira et al.) | ≈9.100 | 3: healthy, cbsd, cmd (detección con cajas) | Uganda, Makerere | No |
+
+**Conclusión:** el proyecto usa solo el conjunto de TensorFlow Datasets (iCassava 2019). Mendeley es de otro país y otras clases. Kaggle 2020 y Harvard Dataverse son del mismo laboratorio y podrían compartir algunas fotos con el nuestro; eso no se comprobó porque exige descargarlos y compararlos archivo por archivo. Dentro de nuestro conjunto sí se comprobó que ninguna foto idéntica o casi idéntica quede a la vez en entrenamiento y prueba.
