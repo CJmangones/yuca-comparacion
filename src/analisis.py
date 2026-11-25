@@ -25,7 +25,7 @@ def leer_metricas(experimento):
         return json.load(f)
 
 
-def tabla_consolidada(experimentos=("E0", "E1", "E2", "E3")):
+def tabla_consolidada(experimentos=("E0", "E1", "E2", "E3", "E4")):
     """Una fila por experimento con desempeño y costo. Solo incluye los que ya se ejecutaron."""
     filas = []
     for exp in experimentos:
@@ -45,11 +45,12 @@ def tabla_consolidada(experimentos=("E0", "E1", "E2", "E3")):
         })
     tabla = pd.DataFrame(filas)
     if not tabla.empty:
-        tabla.to_csv(RESULTADOS / "tabla_consolidada.csv", index=False)
+        nombre = "tabla_consolidada_balanceada.csv" if str(experimentos[0]).startswith("B_") else "tabla_consolidada.csv"
+        tabla.to_csv(RESULTADOS / nombre, index=False)
     return tabla
 
 
-def tabla_por_clase(experimentos=("E0", "E1", "E2", "E3"), metrica="f1"):
+def tabla_por_clase(experimentos=("E0", "E1", "E2", "E3", "E4"), metrica="f1"):
     """F1 (o recall) de cada clase en cada experimento."""
     datos = {}
     for exp in experimentos:
@@ -57,11 +58,12 @@ def tabla_por_clase(experimentos=("E0", "E1", "E2", "E3"), metrica="f1"):
             datos[exp] = {c: round(v[metrica], 4) for c, v in leer_metricas(exp)["por_clase"].items()}
     tabla = pd.DataFrame(datos)
     if not tabla.empty:
-        tabla.to_csv(RESULTADOS / f"{metrica}_por_clase.csv")
+        sufijo = "_balanceada" if str(experimentos[0]).startswith("B_") else ""
+        tabla.to_csv(RESULTADOS / f"{metrica}_por_clase{sufijo}.csv")
     return tabla
 
 
-def graficas_comparacion(experimentos=("E0", "E1", "E2", "E3")):
+def graficas_comparacion(experimentos=("E0", "E1", "E2", "E3", "E4")):
     """Barras de F1 por clase y gráfico de desempeño frente a costo."""
     f1 = tabla_por_clase(experimentos, "f1")
     consolidada = tabla_consolidada(experimentos)
@@ -73,7 +75,8 @@ def graficas_comparacion(experimentos=("E0", "E1", "E2", "E3")):
     eje.set_title("F1 por clase en cada experimento")
     eje.grid(axis="y", alpha=0.3)
     plt.tight_layout()
-    plt.savefig(RESULTADOS / "comparacion_f1_por_clase.png", dpi=150)
+    suf = "_balanceada" if str(experimentos[0]).startswith("B_") else ""
+    plt.savefig(RESULTADOS / f"comparacion_f1_por_clase{suf}.png", dpi=150)
     plt.close()
 
     fig, ejes = plt.subplots(1, 2, figsize=(10, 3.8))
@@ -87,12 +90,12 @@ def graficas_comparacion(experimentos=("E0", "E1", "E2", "E3")):
         eje.grid(alpha=0.3)
     fig.suptitle("Desempeño frente a costo")
     fig.tight_layout()
-    fig.savefig(RESULTADOS / "comparacion_costo.png", dpi=150)
+    fig.savefig(RESULTADOS / f"comparacion_costo{suf}.png", dpi=150)
     plt.close(fig)
     return consolidada
 
 
-def estabilidad(experimentos=("E1", "E3")):
+def estabilidad(experimentos=("E1", "E3", "E4")):
     """Media y variación de macro-F1 entre ejecuciones con distintas semillas (E1, E1_s1, E1_s2...)."""
     filas = []
     for exp in experimentos:
@@ -106,7 +109,8 @@ def estabilidad(experimentos=("E1", "E3")):
     if detalle.empty:
         return detalle, detalle
     resumen = detalle.groupby("experimento")[["macro_f1", "accuracy"]].agg(["mean", "std", "min", "max", "count"]).round(4)
-    detalle.to_csv(RESULTADOS / "estabilidad_detalle.csv", index=False)
+    suf = "_balanceada" if str(experimentos[0]).startswith("B_") else ""
+    detalle.to_csv(RESULTADOS / f"estabilidad_detalle{suf}.csv", index=False)
     return detalle, resumen
 
 

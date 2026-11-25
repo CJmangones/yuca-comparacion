@@ -4,7 +4,7 @@ import torch
 from torch import nn
 from torchvision import models
 
-PREENTRENADOS = ("mobilenet_v2", "resnet18")
+PREENTRENADOS = ("mobilenet_v2", "resnet18", "resnet50")
 
 
 class CNNPequena(nn.Module):
@@ -57,6 +57,12 @@ def crear_modelo(nombre, n_clases, preentrenado=True, tamano=64):
         pesos = models.ResNet18_Weights.IMAGENET1K_V1 if preentrenado else None
         modelo = models.resnet18(weights=pesos)
         entradas = modelo.fc.in_features  # 512 características
+        modelo.fc = nn.Sequential(nn.Dropout(0.2), nn.Linear(entradas, n_clases))
+        return modelo
+    if nombre == "resnet50":
+        pesos = models.ResNet50_Weights.IMAGENET1K_V1 if preentrenado else None
+        modelo = models.resnet50(weights=pesos)
+        entradas = modelo.fc.in_features  # 2048 características
         modelo.fc = nn.Sequential(nn.Dropout(0.2), nn.Linear(entradas, n_clases))
         return modelo
     raise ValueError(f"Modelo desconocido: {nombre}")

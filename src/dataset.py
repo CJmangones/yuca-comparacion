@@ -70,12 +70,24 @@ class HojasYuca(Dataset):
         return self.transformacion(imagen), self.indice_clase[fila["clase"]], i
 
 
-def cargar_particiones(limite=None, semilla=0):
+RUTA_BALANCEADA = "resultados/particion_balanceada.csv"
+
+
+def cargar_particiones(limite=None, semilla=0, particion="original"):
     """Lee el inventario y devuelve {'train': tabla, 'validation': tabla, 'test': tabla}.
 
     Si existe resultados/excluidos.csv (control de duplicados), esas imágenes se quitan.
     'limite' sirve solo para pruebas rápidas del código: toma pocas imágenes por partición.
     """
+    if particion == "balanceada":
+        tabla = pd.read_csv(RUTA_BALANCEADA)
+        partes = {}
+        for nombre in ["train", "validation", "test"]:
+            t = tabla[tabla["particion_nueva"] == nombre].sort_values("ruta")
+            if limite:
+                t = t.sample(n=min(limite, len(t)), random_state=semilla).sort_values("ruta")
+            partes[nombre] = t[["ruta", "clase"]].reset_index(drop=True)
+        return partes
     inventario = pd.read_csv(RUTA_INVENTARIO)
     if Path(RUTA_EXCLUIDOS).exists():
         excluidos = set(pd.read_csv(RUTA_EXCLUIDOS)["ruta"])

@@ -30,6 +30,7 @@ from src.dataset import cargar_particiones, crear_cargador, transformaciones
 
 def definir_experimento(exp, cfg):
     """Traduce el nombre del experimento a sus condiciones concretas."""
+    exp = exp.removeprefix("PRUEBA_").removeprefix("B_")
     p, ext, ft, e0 = cfg["protocolo"], cfg["extraccion"], cfg["ajuste_fino"], cfg["e0"]
     base = {"tamano": p["tamano_imagen"], "aumento": False, "parte_de": None, "ajuste_fino": False}
     if exp == "E0":
@@ -43,6 +44,9 @@ def definir_experimento(exp, cfg):
         return {**base, "modelo": ext["backbone_b"], "epocas": ext["epocas"], "tasa": ext["tasa_aprendizaje"],
                 "aumento": exp.endswith("_aug"),
                 "descripcion": "Backbone B congelado, solo cabeza" + (" + augmentation" if exp.endswith("_aug") else "")}
+    if exp == "E4":
+        return {**base, "modelo": ext["backbone_c"], "epocas": ext["epocas"], "tasa": ext["tasa_aprendizaje"],
+                "descripcion": "Backbone C congelado, solo cabeza"}
     if exp == "E2":
         return {**base, "modelo": ext["backbone_a"], "epocas": ft["epocas"], "tasa": ft["tasa_aprendizaje"],
                 "parte_de": "E1", "ajuste_fino": True,
@@ -82,6 +86,9 @@ def ejecutar(exp, cfg=None, semilla=None, preentrenado=True, limite=None, epocas
     sufijo = "" if semilla == semilla_base else f"_s{semilla}"
     # Las pruebas rápidas se guardan aparte para no confundirlas con resultados reales.
     prefijo = "PRUEBA_" if (limite or epocas or not preentrenado) else ""
+    # Con la partición balanceada los resultados se guardan aparte (B_E0, B_E1, ...)
+    if p.get("particion", "original") == "balanceada":
+        prefijo += "B_"
     nombre = prefijo + exp + sufijo
     definicion = definir_experimento(exp, cfg)
     if epocas:
@@ -99,7 +106,8 @@ def ejecutar(exp, cfg=None, semilla=None, preentrenado=True, limite=None, epocas
     log(f"Dispositivo: {nombre_dispositivo()} | semilla: {semilla}")
 
     # ---------- Datos ----------
-    partes = cargar_particiones(limite=limite, semilla=semilla)
+    partes = cargar_particiones(limite=limite, semilla=semilla, particion=p.get("particion", "original"))
+    log(f"Partición: {p.get('particion', 'original')}")
     tam, lote, raiz = definicion["tamano"], p["tamano_lote"], cfg["datos"]["raiz"]
     recorte = definicion["modelo"] in modelos.PREENTRENADOS
     t_eval = transformaciones(tam, recorte_central=recorte)
@@ -200,7 +208,7 @@ def ejecutar(exp, cfg=None, semilla=None, preentrenado=True, limite=None, epocas
 
 def main():
     parser = argparse.ArgumentParser(description="Entrena y evalúa un experimento")
-    parser.add_argument("--exp", required=True, choices=["E0", "E1", "E2", "E3", "E1_aug", "E3_aug"])
+    parser.add_argument("--exp", required=True, choices=["E0", "E1", "E2", "E3", "E4", "E1_aug", "E3_aug"])
     parser.add_argument("--semilla", type=int, default=None, help="otra semilla (para medir estabilidad)")
     parser.add_argument("--limite", type=int, default=None, help="solo para probar: pocas imágenes")
     parser.add_argument("--epocas", type=int, default=None, help="solo para probar: pocas épocas")
